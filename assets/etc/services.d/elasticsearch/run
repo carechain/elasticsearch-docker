@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv sh
+
+#export LOG_DIR=/var/log/elasticsearch
+#export DATA_DIR=/data/elasticsearch
+#export CONF_DIR=/opt/elasticsearch/config
+#export OPTS="-p $PID_FILE -Edefault.path.logs=$LOG_DIR -Edefault.path.data=$DATA_DIR -Edefault.path.conf=$CONF_DIR"
+
+exec s6-setuidgid elasticsearch /opt/elasticsearch/bin/elasticsearch
