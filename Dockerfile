@@ -17,14 +17,14 @@ COPY assets/ /
 RUN addgroup elasticsearch && \
     adduser -D -h /opt/elasticsearch -G elasticsearch -s /bin/false elasticsearch && \
     chown -R elasticsearch:elasticsearch /opt/elasticsearch && \
-    mkdir -p /data/elasticsearch && \
-    mkdir -p /data/logs && \
-    chown -R elasticsearch:elasticsearch /data
+    mkdir -p /elasticsearch/data && \
+    mkdir -p /elasticsearch/logs && \
+    chown -R elasticsearch:elasticsearch /elasticsearch
 
 ENTRYPOINT ["/init"]
 
 HEALTHCHECK --interval=60s --timeout=30s CMD /healthcheck.sh || exit 1
 
-EXPOSE 9200
+EXPOSE 9200 9300
 
-VOLUME /data
+VOLUME /elasticsearch/data /elasticsearch/logs
